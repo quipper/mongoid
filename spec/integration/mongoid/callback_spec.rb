@@ -30,4 +30,15 @@ describe Mongoid::Callbacks do
       ParentDoc.find(parent.id).child_docs.size.should == 1
     end
   end
+
+  context "for embedded documents" do
+    let(:person) { Person.new }
+    subject { Favorite.new(:perp => person, :count => 0) }
+
+    context "are run once when saving an embedded document" do
+      before { person.save; subject.save }
+      it { subject.count.should == 1 }
+    end
+  end
+
 end

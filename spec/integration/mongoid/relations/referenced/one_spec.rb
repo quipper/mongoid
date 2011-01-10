@@ -57,6 +57,7 @@ describe Mongoid::Relations::Referenced::One do
 
         before do
           person.game = game
+          game.save
         end
 
         it "sets the target of the relation" do
@@ -130,6 +131,7 @@ describe Mongoid::Relations::Referenced::One do
 
         before do
           bar.rating = rating
+          rating.save
         end
 
         it "sets the target of the relation" do

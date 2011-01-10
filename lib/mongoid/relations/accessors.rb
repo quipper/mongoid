@@ -41,7 +41,6 @@ module Mongoid # :nodoc:
       # @since 2.0.0.rc.1
       def configurables(args)
         options = args.extract_options!
-        options.merge!(:building => false) unless options[:building] == true
         { :building => true, :continue => true }.merge(options)
       end
 

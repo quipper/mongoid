@@ -152,6 +152,7 @@ describe Mongoid::Relations::Referenced::ManyToMany do
 
         before do
           person.preferences = [ preference ]
+          preference.save
         end
 
         it "sets the relation" do

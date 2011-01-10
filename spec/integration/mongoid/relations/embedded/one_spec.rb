@@ -53,6 +53,7 @@ describe Mongoid::Relations::Embedded::One do
 
         before do
           person.name = name
+          person.save
         end
 
         it "sets the target of the relation" do
@@ -118,6 +119,7 @@ describe Mongoid::Relations::Embedded::One do
 
         before do
           parent_shelf.child_shelf = child_shelf
+          parent_shelf.save
         end
 
         it "sets the target of the relation" do

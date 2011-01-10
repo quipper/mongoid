@@ -9,7 +9,7 @@ describe Mongoid::Relations::Embedded::In do
   context "when creating the tree through initialization" do
 
     let!(:person) do
-      Person.create(:ssn => "666-66-6666")
+      Person.new(:ssn => "666-66-6666")
     end
 
     let!(:address) do
@@ -23,6 +23,8 @@ describe Mongoid::Relations::Embedded::In do
     let!(:second_location) do
       Location.new(:address => address)
     end
+
+    before { person.save }
 
     it "saves the person" do
       Person.last.should == person
@@ -95,6 +97,7 @@ describe Mongoid::Relations::Embedded::In do
 
         before do
           name.namable = person
+          name.save
         end
 
         it "sets the target of the relation" do

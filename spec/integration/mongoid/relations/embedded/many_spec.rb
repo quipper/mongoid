@@ -196,6 +196,7 @@ describe Mongoid::Relations::Embedded::Many do
 
       before do
         person.addresses = [ address ]
+        person.save
       end
 
       it "saves the target" do
@@ -218,6 +219,7 @@ describe Mongoid::Relations::Embedded::Many do
 
       before do
         person.addresses = [ address ]
+        person.save
       end
 
       it "deletes the old documents" do
@@ -328,6 +330,7 @@ describe Mongoid::Relations::Embedded::Many do
 
         before do
           parent_role.child_roles = [ child_role ]
+          parent_role.save
         end
 
         it "saves the target" do

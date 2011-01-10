@@ -126,6 +126,7 @@ describe Mongoid::Relations::Accessors do
 
         before do
           person.game = game
+          game.save
         end
 
         context "when reloading the relation directly" do

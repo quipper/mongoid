@@ -197,6 +197,7 @@ describe Mongoid::Relations::Referenced::Many do
 
         before do
           person.posts = [ post ]
+          post.save
         end
 
         it "sets the target of the relation" do
@@ -262,6 +263,7 @@ describe Mongoid::Relations::Referenced::Many do
 
         before do
           movie.ratings = [ rating ]
+          rating.save
         end
 
         it "sets the target of the relation" do
