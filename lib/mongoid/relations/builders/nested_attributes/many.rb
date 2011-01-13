@@ -102,9 +102,9 @@ module Mongoid # :nodoc:
           # attrs: The single document attributes to process.
           def process(attrs)
             return if reject?(attrs)
-            if attrs[:_id]
+            if target_id = (attrs[:_id] || attrs[:id])
               document = existing.find(attrs[:_id])
-              destroyable?(attrs) ? document.destroy : document.update_attributes(attrs)
+              destroyable?(attrs) ? document.destroy : document.attributes = attrs
             else
               existing.push(metadata.klass.new(attrs)) unless destroyable?(attrs)
             end
