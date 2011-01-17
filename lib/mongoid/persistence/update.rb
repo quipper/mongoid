@@ -63,6 +63,8 @@ module Mongoid #:nodoc:
         updates = document._updates
         unless updates.empty?
           other_pushes = updates.delete(:other)
+          # really dirty fix..
+          updates.delete('$set') if updates.has_key?('$pushAll')
           collection.update(document._selector, updates, options.merge(:multi => false))
           collection.update(
             document._selector,
