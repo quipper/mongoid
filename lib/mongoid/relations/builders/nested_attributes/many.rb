@@ -102,8 +102,8 @@ module Mongoid # :nodoc:
           # attrs: The single document attributes to process.
           def process(attrs)
             return if reject?(attrs)
-            if attrs[:id]
-              document = existing.find(convert_id(attrs[:id]))
+            if target_id = (attrs[:_id] || attrs[:id])
+              document = existing.find(target_id)
               destroyable?(attrs) ? document.destroy : document.update_attributes(attrs)
             else
               # @todo: Durran: Tell the push not to save the base and call it
